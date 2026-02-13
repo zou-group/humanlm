@@ -1,0 +1,4 @@
+.env
+.gradio
+annotations/
+__pycache__/

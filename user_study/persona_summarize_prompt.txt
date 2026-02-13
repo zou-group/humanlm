@@ -1,0 +1,220 @@
+You are an expert at creating detailed user personas based on survey responses. Your task is to analyze the user's answers to questions about their values and communication style, then generate a comprehensive persona.
+
+## Input Format
+You will receive:
+1. Demographics: age group, gender, occupation, location, nationality
+2. Values questions and answers (4 questions about their beliefs and priorities)
+3. Communication questions and answers (4 questions about how they interact with others)
+
+## Original Questions Asked
+The user was asked to answer the following questions:
+
+**Values Questions:**
+1. Rank these values from 1 (most important) to 5 (least important): Freedom, Health, Wealth, Success, Happiness. Then: "Explain your reasons"
+2. "A family member or close friend keeps criticizing your life choices (career, partner, lifestyle). How do you handle it?"
+3. "Someone close to you (friend, family, or partner) seriously hurts you but apologizes. What factors determine whether you forgive them?"
+4. "A close friend asks you to help them with something important on a day you had set aside for yourself. How do you respond?"
+
+**Communication Questions:**
+5. "When someone hurts your feelings, do you address it right away or wait? Why?"
+6. "Do you prefer direct, blunt feedback or a gentler approach? Why?"
+7. "How do you usually respond when a friend comes to you with a problem?"
+8. "How do you express disagreement with someone you respect (like a parent or boss)?"
+
+## Output Format
+Generate a JSON object with the following structure:
+{
+  "demographics": {
+    "age_group": "<from input>",
+    "gender": "<from input>",
+    "location": "<from input>",
+    "occupation": "<from input>",
+    "nationality": "<from input>"
+  },
+  "values": [
+    "<value statement 1 - specific belief or priority inferred from their answers>",
+    "<value statement 2>",
+    ...
+  ],
+  "communication": [
+    "<communication trait 1 - specific style or pattern inferred from their answers>",
+    "<communication trait 2>",
+    ...
+  ],
+  "statistics": [
+    "Average response length: 50-200 words"
+  ]
+}
+
+## Guidelines
+1. **Values**: Extract 4-6 specific values/beliefs from their answers. Be specific and include quotes from their answers when relevant. Examples:
+   - "Prioritizes honesty even when it may hurt, believing that 'truth builds stronger relationships'"
+   - "Believes in setting firm boundaries with family members who overstep"
+   - "Values personal freedom and autonomy over conforming to others' expectations"
+
+2. **Communication**: Extract 4-6 specific communication traits. Focus on:
+   - How direct or indirect they are
+   - How they handle conflict (immediate vs. delayed, confrontational vs. avoidant)
+   - Their approach to giving feedback or advice
+   - Their emotional expression style
+   - How they phrase things (formal/informal, empathetic/blunt)
+   - **How they write their answers**: Pay attention to the writing style in their responses - do they use humor, personal anecdotes, strong language, or emphatic expressions? Include quotes as evidence. Examples:
+     - "Uses self-deprecating humor: 'Very carefully, ha'"
+     - "Incorporates personal anecdotes: 'I watched my dad struggle after his heart attack'"
+     - "Employs direct, no-nonsense language: 'Just tell me what's wrong so I can fix it'"
+
+3. **Statistics**: Always include this exact line: "Average response length: 50-200 words". This is a fixed value for all personas.
+
+## Few-Shot Examples
+
+### Example 1
+
+**Input:**
+Demographics:
+- Age Group: 25-34
+- Gender: Female
+- Occupation: Marketing Manager
+- Location: Chicago, USA
+- Nationality: American
+
+Values Questions:
+Q1 (Value Rankings): Freedom: 1, Health: 2, Happiness: 3, Success: 4, Wealth: 5
+Reasons: Freedom is everything to me because without the ability to make my own choices, nothing else matters. I've seen too many people trapped in lives they didn't choose.
+
+Q2 (Handling criticism): I set clear boundaries. If someone keeps criticizing my choices after I've explained myself once, I reduce contact. I don't owe anyone endless explanations for living my life.
+
+Q3 (Forgiveness factors): It depends on whether they take real responsibility. A genuine apology means acknowledging the specific harm, not just saying "sorry you feel that way." Repeat offenders don't get second chances from me.
+
+Q4 (Helping friend vs personal time): It depends on the situation. If it's truly urgent, I'd help but be upfront that I need to reschedule my personal time. If it can wait, I'd suggest another day. I've learned that constantly sacrificing my needs leads to resentment.
+
+Communication Questions:
+Q5 (Conflict timing): I address things relatively quickly, usually within a day. Letting issues fester just makes them worse, and I don't want resentment building up. But I do take a few hours to cool down first.
+
+Q6 (Feedback style): Direct, always. I hate when people sugarcoat things or dance around the point. Just tell me what's wrong so I can fix it. I give feedback the same way - clear and specific.
+
+Q7 (Supporting friends): I listen first to understand what they actually need. Some people want advice, some just want to vent. I usually ask "do you want solutions or support?" before jumping in with suggestions.
+
+Q8 (Disagreement with authority): I speak up respectfully but firmly. I don't believe in blind deference just because someone has a title. If my boss makes a bad call, I'll say so - professionally, with reasoning to back it up.
+
+**Output:**
+{
+  "demographics": {
+    "age_group": "25-34",
+    "gender": "Female",
+    "location": "Chicago, USA",
+    "occupation": "Marketing Manager",
+    "nationality": "American"
+  },
+  "values": [
+    "Prioritizes personal freedom and autonomy above all else, believing 'without the ability to make my own choices, nothing else matters'",
+    "Sets firm boundaries with people who repeatedly criticize her choices, reducing contact rather than over-explaining",
+    "Requires genuine accountability for forgiveness - specific acknowledgment of harm, not vague apologies like 'sorry you feel that way'",
+    "Has zero tolerance for repeat offenders, believing second chances should be earned not assumed",
+    "Rejects self-sacrifice as a default, having learned that constantly prioritizing others leads to resentment",
+    "Evaluates whether others' expectations are reasonable before deciding to meet them"
+  ],
+  "communication": [
+    "Addresses conflicts quickly, typically within a day: 'Letting issues fester just makes them worse'",
+    "Takes time to cool down (a few hours) before addressing issues, balancing promptness with emotional regulation",
+    "Strongly prefers direct, clear feedback: 'Just tell me what's wrong so I can fix it'",
+    "Asks clarifying questions before offering support: 'do you want solutions or support?'",
+    "Speaks up to authority figures respectfully but firmly, backing disagreements with reasoning",
+    "Doesn't believe in blind deference to titles or positions of authority"
+  ],
+  "statistics": [
+    "Average response length: 50-200 words"
+  ]
+}
+
+### Example 2
+
+**Input:**
+Demographics:
+- Age Group: 35-44
+- Gender: Male
+- Occupation: High School Teacher
+- Location: Austin, Texas
+- Nationality: American
+
+Values Questions:
+Q1 (Value Rankings): Health: 1, Happiness: 2, Freedom: 3, Success: 4, Wealth: 5
+Reasons: You can't enjoy anything if your health is gone. I watched my dad struggle after his heart attack and it changed my whole perspective. Everything else becomes meaningless when you're sick.
+
+Q2 (Handling criticism): Honestly, it depends on who it is. From my parents, I try to hear them out because they usually mean well even if they express it badly. From acquaintances? I just smile and change the subject.
+
+Q3 (Forgiveness factors): Time and changed behavior. Words are cheap. If someone hurt me and they're genuinely different six months later, I can move forward. But I don't forget - it changes the relationship even if I forgive.
+
+Q4 (Helping friend vs personal time): I'd probably help them, honestly. I have a hard time saying no to people I care about. I'd figure out my personal time can wait - though I'm working on being better about protecting my own time.
+
+Communication Questions:
+Q5 (Conflict timing): I tend to wait, maybe too long. I process things internally first, sometimes for days. By the time I bring it up, I've usually calmed down and can discuss it rationally, but sometimes I've waited so long it feels awkward.
+
+Q6 (Feedback style): Gentler for sure. I work with teenagers all day - you learn that how you say something matters as much as what you say. I try to sandwich criticism with genuine positives.
+
+Q7 (Supporting friends): I'm the friend who just listens. I don't try to fix everything. Sometimes I share a similar experience to show I understand. I think most people just want to feel heard.
+
+Q8 (Disagreement with authority): Very carefully, ha. I pick my battles. If it's something that really matters - like a policy affecting my students - I'll push back through proper channels. Minor stuff, I let go.
+
+**Output:**
+{
+  "demographics": {
+    "age_group": "35-44",
+    "gender": "Male",
+    "location": "Austin, Texas",
+    "occupation": "High School Teacher",
+    "nationality": "American"
+  },
+  "values": [
+    "Prioritizes health above all after witnessing his father's heart attack, believing 'You can't enjoy anything if your health is gone'",
+    "Differentiates responses based on relationship closeness - hears out family but deflects acquaintances' criticism",
+    "Values changed behavior over apologies, believing 'Words are cheap' and requiring time to see genuine change",
+    "Forgives but doesn't forget - acknowledges that serious hurts permanently change relationships",
+    "Tends to prioritize others' needs over his own, though recognizes this as something to work on",
+    "Self-aware about his tendency to give in too much: 'I'm working on being better about protecting my own time'"
+  ],
+  "communication": [
+    "Processes conflicts internally before addressing them, sometimes waiting days to respond",
+    "Prefers to discuss issues after calming down to ensure rational conversation",
+    "Uses a gentle feedback approach, sandwiching criticism between genuine positives",
+    "Primarily listens when friends share problems: 'I don't try to fix everything'",
+    "Shares similar experiences to demonstrate understanding and empathy",
+    "Picks battles carefully with authority - pushes back through proper channels only on issues that truly matter",
+    "Uses self-deprecating humor: 'Very carefully, ha'"
+  ],
+  "statistics": [
+    "Average response length: 50-200 words"
+  ]
+}
+
+---
+
+Now analyze the following user's responses and generate their persona:
+
+**Input:**
+Demographics:
+- Age Group: {age_group}
+- Gender: {gender}
+- Occupation: {occupation}
+- Location: {location}
+- Nationality: {nationality}
+
+Values Questions:
+Q1 (Value Rankings): Freedom: {rank_freedom}, Health: {rank_health}, Wealth: {rank_wealth}, Success: {rank_success}, Happiness: {rank_happiness}
+Reasons: {q1_answer}
+
+Q2 (Handling criticism from family/friends): {q2_answer}
+
+Q3 (Forgiveness factors): {q3_answer}
+
+Q4 (Helping friend vs personal time): {q4_answer}
+
+Communication Questions:
+Q5 (Conflict timing): {q5_answer}
+
+Q6 (Feedback style preference): {q6_answer}
+
+Q7 (Supporting friends with problems): {q7_answer}
+
+Q8 (Disagreeing with authority): {q8_answer}
+
+**Output:**
