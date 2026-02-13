@@ -1,0 +1,6 @@
+dataset_name: humanual_opinion
+app_name: Humanual-Opinion
+prompt_is_json_string: false
+prompt_metadata_is_json_string: false
+metadata_is_json_string: false
+

@@ -29,10 +29,9 @@ from dotenv import load_dotenv
 from jinja2 import Template
 from openai import AsyncOpenAI
 import gradio as gr
-import pandas as pd
 from huggingface_hub import HfApi
 from litellm import completion
-from logger_config import logger
+from logger import logger
 from utils import persist, sanitize_filename
 
 load_dotenv()
@@ -53,7 +52,7 @@ base_model_repo = 'Qwen/Qwen3-8B'
 GRPO_model_repo = 'snap-stanford/grpo_ablation_reddit_think'
 humanlm_model_repo = 'snap-stanford/humanlm_hetero_reddit_best_humanlike'
 USER_PROFILE_CACHE_PATH = os.path.join(BASE_DIR, "reddit_user_profile_cache.json")
-PERSONA_PROMPT_TEMPLATE_PATH = os.path.join(BASE_DIR, "persona_summarize_prompt.txt")
+PERSONA_PROMPT_TEMPLATE_PATH = os.path.join(BASE_DIR, "prompts", "persona_summarize_prompt.txt")
 FOLDER_PATH = os.path.join(BASE_DIR, "annotations")
 
 client_generation_kwargs = {
@@ -383,7 +382,7 @@ async def completion_with_retry(client, model_repo, prompt, max_retries=3, **kwa
 # NOTE: Set CHAT_TEMPLATE_PATH to the location of your Jinja chat template file.
 CHAT_TEMPLATE_PATH = os.environ.get(
     "CHAT_TEMPLATE_PATH",
-    os.path.join(BASE_DIR, "qwen3_multi_role_template_think.jinja"),
+    os.path.join(BASE_DIR, "templates", "qwen3_multi_role_template_think.jinja"),
 )
 with open(CHAT_TEMPLATE_PATH, "r") as f:
     CHAT_TEMPLATE = Template(f.read())
@@ -416,13 +415,13 @@ def format_prompt(messages, speak_as, persona=None, enable_thinking=False):
         enable_thinking=enable_thinking
     )
 
-with open(os.path.join(BASE_DIR, "reddit_post_dict_testset.json"), "r") as f:
+with open(os.path.join(BASE_DIR, "data", "reddit_post_dict_testset.json"), "r") as f:
     post_id_dict = json.load(f)
 post_ids = list(post_id_dict.keys())
 
 
 # Load system prompt template
-SYSTEM_PROMPT_PATH = os.path.join(BASE_DIR, "system_prompt.txt")
+SYSTEM_PROMPT_PATH = os.path.join(BASE_DIR, "prompts", "system_prompt.txt")
 with open(SYSTEM_PROMPT_PATH, "r") as f:
     SYSTEM_PROMPT_TEMPLATE = f.read()
 

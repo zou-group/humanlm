@@ -1,0 +1,26 @@
+dataset_name: humanual_politics
+app_name: Humanual-Politics
+prompt_is_json_string: true
+prompt_metadata_is_json_string: false
+metadata_is_json_string: true
+# This dataset has rich user profile data in a separate dataset!
+user_profile_dataset: snap-stanford/medium_users_raw_dataset
+user_profile_split: politics  # Same split structure as main dataset
+persona_enrichment:
+  # User profile fields (from user_profile_dataset)
+  use_user_profile_fields:
+    user.bio: ["bio"]
+    user.fullname: ["fullname"]
+    user.followers_count: ["followers count"]
+    user.following_count: ["following count"]
+    user.twitter_username: ["twitter username"]
+    user.is_writer_program_enrolled: ["is enrolled in Medium Partner Program"]
+    user.tier: ["Medium tier"]
+    interests.tags_followed: ["Medium tags followed"]
+  # Comment-level metadata fields
+  use_metadata_fields:
+    - counts.claps
+    - counts.voters
+    - counts.views
+    - counts.publication_id
+

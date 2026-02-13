@@ -1,0 +1,6 @@
+dataset_name: humanual_chat
+app_name: Humanual-Chat
+prompt_is_json_string: false
+prompt_metadata_is_json_string: true
+metadata_is_json_string: true
+

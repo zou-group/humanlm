@@ -1,0 +1,12 @@
+dataset_name: humanual_email
+app_name: Humanual-Email
+prompt_is_json_string: false
+prompt_metadata_is_json_string: true
+metadata_is_json_string: true
+persona_enrichment:
+  use_metadata_fields:
+    - subject
+    - x_folder
+    - x_origin
+  use_user_profile_fields: []
+
