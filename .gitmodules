@@ -1,0 +1,4 @@
+[submodule "humanlm_train/verl-recipe-humanlm"]
+	path = humanlm_train/verl-recipe-humanlm
+	url = https://github.com/ehejin/verl-recipe-humanlm.git
+	branch = humanlm
