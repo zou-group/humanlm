@@ -34,7 +34,21 @@ python gradio_app.py          # add --debug to skip validation constraints
 
 ### 3. Training
 
-Coming soon.
+The VERL recipe for HumanLM training is maintained as a git submodule at
+`humanlm_train/verl-recipe-humanlm`.
+
+If you cloned this repository without submodules, run:
+
+```bash
+git submodule update --init --recursive
+```
+For first-time setup, run:
+
+```bash
+git clone --recurse-submodules https://github.com/zou-group/humanlm.git
+```
+
+The HumanLM-specific training code and setup instructions are in `humanlm_train/verl-recipe-humanlm/humanlm/README.md`.
 
 ### Bibtex
 
